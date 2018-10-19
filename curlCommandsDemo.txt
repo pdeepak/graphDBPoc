@@ -1,0 +1,23 @@
+curl -X GET 'http://localhost:8080/'
+
+curl -X GET 'http://localhost:8080/updateGraph1/SECTION-4.5-15303007776011531736065504/CHAPTER-9-15303007776011531736065504'
+
+
+  #!/bin/bash
+ 
+   url="http://localhost:8080/test1/"
+   while read query
+   do
+     content=$(curl -X GET "{$url}{$query}")
+     echo $query
+  echo $content >> output.txt
+  done < query.txt
+
+  
+   glp-1531736065504
+  
+  SECTION-4.5-15303007776011531736065504/CHAPTER-9-15303007776011531736065504
+  
+  SECTION-9.1-15303007776011531736065504/CHAPTER-3-15303007776011531736065504
+  
+  curl -X GET 'http://localhost:8080/updateGraph1/

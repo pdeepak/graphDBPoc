@@ -1,0 +1,52 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.rishabh'
+version = 'neo4J'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+bootJar {
+    baseName = 'gs-accessing-data-neo4j'
+    version =  '0.1.0'
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-neo4j')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile group: 'org.neo4j', name: 'neo4j-ogm-http-driver', version: '3.1.0'
+	compile group: 'com.couchbase.client', name: 'java-client', version: '2.6.1'
+	// https://mvnrepository.com/artifact/org.neo4j/neo4j-kernel
+	compile group: 'org.neo4j', name: 'neo4j-kernel', version: '3.5.0-alpha05'
+	// https://mvnrepository.com/artifact/org.apache.tinkerpop/tinkergraph-gremlin
+	testCompile group: 'org.apache.tinkerpop', name: 'tinkergraph-gremlin', version: '3.3.3'
+	// https://mvnrepository.com/artifact/com.tinkerpop.gremlin/gremlin-java
+	//compile group: 'com.tinkerpop.gremlin', name: 'gremlin-java', version: '2.6.0'
+	compile group: 'org.apache.tinkerpop', name: 'gremlin-driver', version: '3.3.2'
+	
+	compile group: 'org.apache.tinkerpop', name: 'neo4j-gremlin', version: '3.3.3'
+	compile group: 'org.neo4j', name:  'neo4j-tinkerpop-api-impl' , version: '0.7-3.2.3'
+
+	compile group: 'com.google.guava', name: 'guava', version:'26.0-jre'
+
+	 
+	
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
