@@ -53,7 +53,7 @@ public class NeptuneUtils {
 	
 	
 	public  List readNodes( String id,  int depth) {
-		return g.V(id).emit().repeat(__.out()).until(__.loops().is(P.gt(depth))).tree().toList();
+			return g.V(id).emit().repeat(__.out("ASSOCIATED_WITH")).times(depth).tree().toList();
 		
 	}
 	   public  void createRelationShip(LearningAsset course) {
@@ -61,7 +61,7 @@ public class NeptuneUtils {
 			if(course.assets !=null) {
 				Object[] childs = course.assets.stream().map(l -> l.getId()).toArray();
 				Arrays.asList(childs).stream().forEach(childNode -> {
-					g.addE("ASSOCIATED_WITH").from(g.V(parent)).to(g.V(childNode)).next();
+					g.addE("ASSOCIATED_WITH").from(__.V(parent)).to(__.V(childNode)).next();
 				});
 				course.assets.stream().forEach(la ->{
 					createRelationShip(la);
@@ -105,7 +105,6 @@ public class NeptuneUtils {
 		}*/
    
 		public  void updateRelation( String existingId, String laterId) {
-			 List<Edge> edgeList = g.V(existingId).inE("ASSOCIATED_WITH").toList();
 			 g.addE("ASSOCIATED_WITH").from(g.V(laterId)).to(g.V(existingId)).next();
 			
 		}
